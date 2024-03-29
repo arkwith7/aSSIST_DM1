@@ -1,0 +1,15 @@
+ipykernel
+ipython
+jupyter_client
+jupyter_core
+matplotlib
+matplotlib-inline
+networkx
+numpy
+openpyxl
+packaging
+pandas
+pillow
+scikit-learn
+scipy
+statsmodels
