@@ -13,3 +13,4 @@ pillow
 scikit-learn
 scipy
 statsmodels
+seaborn
