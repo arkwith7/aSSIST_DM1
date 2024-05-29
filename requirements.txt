@@ -15,3 +15,5 @@ scipy
 statsmodels
 seaborn
 xgboost
+google-api-python-client
+aiohttp

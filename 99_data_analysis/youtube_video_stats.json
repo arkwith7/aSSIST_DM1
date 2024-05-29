@@ -1,0 +1,10 @@
+{
+    "kind": "youtube#searchListResponse",
+    "etag": "XBW7qK0yk5jdHrzjqsGojk5TvmA",
+    "regionCode": "KR",
+    "pageInfo": {
+        "totalResults": 2,
+        "resultsPerPage": 0
+    },
+    "items": []
+}

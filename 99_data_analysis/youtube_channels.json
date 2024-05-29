@@ -1,0 +1,152 @@
+{
+    "kind": "youtube#searchListResponse",
+    "etag": "Tq92P56dm3XcLi19EucpF0LkUhQ",
+    "nextPageToken": "CAUQAA",
+    "regionCode": "KR",
+    "pageInfo": {
+        "totalResults": 15710,
+        "resultsPerPage": 5
+    },
+    "items": [
+        {
+            "kind": "youtube#searchResult",
+            "etag": "UI9dqQDtxh9SAmd55s8_w1hB1bg",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCUwSF2wKNsA2LMFrkm9q4fg"
+            },
+            "snippet": {
+                "publishedAt": "2024-02-08T16:45:20Z",
+                "channelId": "UCUwSF2wKNsA2LMFrkm9q4fg",
+                "title": "영양제tv",
+                "description": "",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/2z0yoP44ifLxJY5ZW9uuAoMS_aEEW5K3_W-PDoCX-wEPuf3V5PRjZNCyVyxoUxp8ZPA4bC1TEa0=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/2z0yoP44ifLxJY5ZW9uuAoMS_aEEW5K3_W-PDoCX-wEPuf3V5PRjZNCyVyxoUxp8ZPA4bC1TEa0=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/2z0yoP44ifLxJY5ZW9uuAoMS_aEEW5K3_W-PDoCX-wEPuf3V5PRjZNCyVyxoUxp8ZPA4bC1TEa0=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "영양제tv",
+                "liveBroadcastContent": "none",
+                "publishTime": "2024-02-08T16:45:20Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "e1rCN0KXq2WQ4iCSAXbkzVXi5vY",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCMw_ye_30A1TulxkGbr04Ig"
+            },
+            "snippet": {
+                "publishedAt": "2023-02-27T09:48:44Z",
+                "channelId": "UCMw_ye_30A1TulxkGbr04Ig",
+                "title": "이젤약사의 약과 영양제 이야기",
+                "description": "",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/ytc/AIdro_lbpfOC9I8qLiOVcpkqVGISdiSIIKblr7zkprr7zVhB1cV6PVM=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/ytc/AIdro_lbpfOC9I8qLiOVcpkqVGISdiSIIKblr7zkprr7zVhB1cV6PVM=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/ytc/AIdro_lbpfOC9I8qLiOVcpkqVGISdiSIIKblr7zkprr7zVhB1cV6PVM=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "이젤약사의 약과 영양제 이야기",
+                "liveBroadcastContent": "none",
+                "publishTime": "2023-02-27T09:48:44Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "PU8B3wum5Xk7Q6INl3EQNiVY5Zw",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCMh4_htPoAfmBlROHD2Bgkw"
+            },
+            "snippet": {
+                "publishedAt": "2020-02-13T09:44:37Z",
+                "channelId": "UCMh4_htPoAfmBlROHD2Bgkw",
+                "title": "식물인간한테영양제꽂기 ",
+                "description": "",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/ilSilTxHmEK4hCGMLfGUt8Jvzh0yQSkq5dmej6xGxdOTmwhardM9ObTlZpPZoLyBhv-gSJLs=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/ilSilTxHmEK4hCGMLfGUt8Jvzh0yQSkq5dmej6xGxdOTmwhardM9ObTlZpPZoLyBhv-gSJLs=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/ilSilTxHmEK4hCGMLfGUt8Jvzh0yQSkq5dmej6xGxdOTmwhardM9ObTlZpPZoLyBhv-gSJLs=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "식물인간한테영양제꽂기 ",
+                "liveBroadcastContent": "none",
+                "publishTime": "2020-02-13T09:44:37Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "qws5Rn6fsQgT3C2xc7XudTK69T0",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCs--xoWHoLgVwkKtjyAlnsA"
+            },
+            "snippet": {
+                "publishedAt": "2021-01-25T12:42:26Z",
+                "channelId": "UCs--xoWHoLgVwkKtjyAlnsA",
+                "title": "영양제 supplement",
+                "description": "",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/ytc/AIdro_lRMSkiksAQryqJUNoFcU8y4eZQ6HmItvmh2I5ePl04ww=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/ytc/AIdro_lRMSkiksAQryqJUNoFcU8y4eZQ6HmItvmh2I5ePl04ww=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/ytc/AIdro_lRMSkiksAQryqJUNoFcU8y4eZQ6HmItvmh2I5ePl04ww=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "영양제 supplement",
+                "liveBroadcastContent": "none",
+                "publishTime": "2021-01-25T12:42:26Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "FA8Y8b_3YkxpzjIAwtZsxbN44L8",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCrzfOCY5XxBZKZFJDWMXb-g"
+            },
+            "snippet": {
+                "publishedAt": "2020-02-08T08:32:16Z",
+                "channelId": "UCrzfOCY5XxBZKZFJDWMXb-g",
+                "title": "마음 영양제를 찾아서~~",
+                "description": "우리가 살아가는 삶은 늘 다르게 별에별 이야기와 형태들로 다가온다^^",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/CuuNbG9Q6IhFD7Csod6riGG50CwT3pjJQ3WhvGAc8aGZViXwkEjzOX3sSnTF9n117BVokvVgig=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/CuuNbG9Q6IhFD7Csod6riGG50CwT3pjJQ3WhvGAc8aGZViXwkEjzOX3sSnTF9n117BVokvVgig=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/CuuNbG9Q6IhFD7Csod6riGG50CwT3pjJQ3WhvGAc8aGZViXwkEjzOX3sSnTF9n117BVokvVgig=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "마음 영양제를 찾아서~~",
+                "liveBroadcastContent": "none",
+                "publishTime": "2020-02-08T08:32:16Z"
+            }
+        }
+    ]
+}
