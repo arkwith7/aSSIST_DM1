@@ -120,7 +120,7 @@ async def get_video_details(channel_id, start_date, end_date):
                 video_id = item['id']['videoId']
                 video_url = "https://www.googleapis.com/youtube/v3/videos"
                 video_params = {
-                    'part': 'snippet,statistics',
+                    'part': 'snippet,statistics,contentDetails',  # 'contentDetails' 추가
                     'id': video_id,
                     'key': api_key
                 }
@@ -130,10 +130,13 @@ async def get_video_details(channel_id, start_date, end_date):
                     video_details.append({
                         'videoId': video_id,
                         'title': video_item['snippet']['title'],
+                        'videoAuthorId': video_item['snippet']['channelId'],  # 비디오 작성자의 ID 추가
+                        'channelTitle': video_item['snippet']['channelTitle'],  # 비디오 작성자(채널 이름) 추가         
                         'publishedAt': video_item['snippet']['publishedAt'],
                         'viewCount': video_item['statistics'].get('viewCount', 0),
                         'likeCount': video_item['statistics'].get('likeCount', 0),
-                        'dislikeCount': video_item['statistics'].get('dislikeCount', 0)
+                        'dislikeCount': video_item['statistics'].get('dislikeCount', 0),
+                        'duration': video_item['contentDetails']['duration']  # 재생 시간 추가
                     })
                 else:
                     print(f"No details found for video ID {video_id}.")
@@ -158,7 +161,7 @@ async def get_video_comments(video_id):
 
     comments = []
     params = {
-        'part': 'snippet',
+        'part': 'snippet,replies',  # 답글 정보도 포함
         'videoId': video_id,
         'maxResults': 100,
         'textFormat': 'plainText',
@@ -167,26 +170,52 @@ async def get_video_comments(video_id):
     url = "https://www.googleapis.com/youtube/v3/commentThreads"
 
     while True:
-        response = await async_api_call(url, params)
-        if 'items' not in response:
-            print(f"No items found in response for video {video_id}.")
-            break
+        try:
+            response = await async_api_call(url, params)
+            if 'items' not in response:
+                print(f"No items found in response for video {video_id}.")
+                break
 
-        for item in response['items']:
-            top_comment = item['snippet']['topLevelComment']['snippet']
-            comments.append({
-                'videoId': video_id,
-                'commentId': item['id'],
-                'authorDisplayName': top_comment['authorDisplayName'],
-                'textOriginal': top_comment['textOriginal'],
-                'likeCount': top_comment['likeCount'],
-                'publishedAt': top_comment['publishedAt']
-            })
+            for item in response['items']:
+                top_comment = item['snippet']['topLevelComment']['snippet']
+                top_comment_id = item['snippet']['topLevelComment']['id']
+                comment_data = {
+                    'videoId': video_id,
+                    'commentId': top_comment_id,
+                    'authorDisplayName': top_comment['authorDisplayName'],
+                    'authorId': top_comment['authorChannelId']['value'],  # 작성자 ID로 변경
+                    'textOriginal': top_comment['textOriginal'],
+                    'likeCount': top_comment['likeCount'],
+                    'publishedAt': top_comment['publishedAt'],
+                    'parentCommentId': None  # 최상위 댓글은 부모 댓글 ID가 없음
+                }
+                comments.append(comment_data)
+                # 답글 정보 추가
+                if 'replies' in item:
+                    for reply in item['replies']['comments']:
+                        reply_snippet = reply['snippet']
+                        comments.append({
+                            'videoId': video_id,
+                            'commentId': reply['id'],
+                            'authorDisplayName': reply_snippet['authorDisplayName'],
+                            'authorId': reply_snippet['authorChannelId']['value'],  # 답글 작성자 ID로 변경
+                            'textOriginal': reply_snippet['textOriginal'],
+                            'likeCount': reply_snippet['likeCount'],
+                            'publishedAt': reply_snippet['publishedAt'],
+                            'parentCommentId': top_comment_id  # 답글의 경우, 최상위 댓글 ID를 부모 ID로 설정
+                        })
 
-        if 'nextPageToken' in response:
-            params['pageToken'] = response['nextPageToken']
-        else:
-            break
+            if 'nextPageToken' in response:
+                params['pageToken'] = response['nextPageToken']
+            else:
+                break
+        except Exception as e:
+            if 'commentsDisabled' in str(e):
+                print(f"댓글이 비활성화된 비디오입니다: {video_id}")
+                break  # 댓글 비활성화 오류 처리
+            else:
+                print(f"API 호출 중 예외 발생: {e}")
+                break  # 다른 예외 발생 시 처리
 
     cache[cache_key] = comments  # 캐시 업데이트
     save_cache(cache)  # 캐시 저장
@@ -209,16 +238,14 @@ async def main(channel_ids, months):
     for channel_id in channel_ids:
         print(f"Fetching data for channel: {channel_id}")
         channel_stats = await get_channel_stats(channel_id)
-        print(f"channel stats for channel {channel_id}: {channel_stats}")
+        print(f"Channel stats for channel {channel_id}: {channel_stats}")
 
         if not channel_stats or 'channelId' not in channel_stats:
             print(f"No channel stats found for channel: {channel_id}")
             continue  # 채널 통계 정보가 없거나 channelId가 없으면 다음 채널로 넘어갑니다.
 
-        video_stats = ''
-        print(f"비디오 정보 가져오는 함수 시작 : {channel_stats['channelId']}, {start_date_str}, {end_date_str}")
-        video_stats = await get_video_details(channel_stats.get('channelId'), start_date_str, end_date_str)
-        print("비디오 정보 가져오는 함수 종료")
+        video_stats = await get_video_details(channel_stats['channelId'], start_date_str, end_date_str)
+        print("Video details fetching completed")
         print(f"Video stats for channel {channel_id}: {video_stats}")
         if not video_stats:
             print(f"No video stats found for channel: {channel_id}")
@@ -230,6 +257,7 @@ async def main(channel_ids, months):
                 continue  # 비디오 ID가 없으면 다음 비디오로 넘어갑니다.
 
             comments = await get_video_comments(video_stat['videoId'])
+            print(f"Comments fetched for video {video_stat['videoId']}")
             if not comments:
                 print(f"No comments found for video: {video_stat['videoId']}")
                 continue  # 댓글 정보가 없으면 다음 비디오로 넘어갑니다.
@@ -246,15 +274,19 @@ async def main(channel_ids, months):
                     'subscriberCount': channel_stats.get('subscriberCount', 'N/A'),
                     'videoId': video_stat['videoId'],
                     'videoTitle': video_stat['title'],
+                    'videoAuthorId': video_stat['videoAuthorId'],  # 비디오 작성자 ID 추가
                     'videoPublishedAt': video_stat['publishedAt'],
+                    'duration': video_stat['duration'],  # 재생 시간 추가 
                     'viewCount': video_stat['viewCount'],
                     'likeCount': video_stat['likeCount'],
                     'dislikeCount': video_stat['dislikeCount'],
                     'commentId': comment['commentId'],
                     'commentAuthor': comment['authorDisplayName'],
+                    'authorId': comment['authorId'],  # 댓글 작성자 ID 추가
                     'commentText': comment['textOriginal'],
                     'commentLikeCount': comment['likeCount'],
-                    'commentPublishedAt': comment['publishedAt']
+                    'commentPublishedAt': comment['publishedAt'],
+                    'parentCommentId': comment.get('parentCommentId')  # 부모 댓글 ID 추가
                 })
 
     if not all_data:
@@ -270,6 +302,6 @@ async def main(channel_ids, months):
 
 # 비동기 메인 함수 실행
 if __name__ == "__main__":
-    channel_ids = ['UCMFk5S7g5DY-CZNVh_Kyz_A', 'UCY-mXLM6DsS9cmSwlh0tqSA', 'UC3iSLVH0MxHfwO69oHKpvog']  # 채널 ID 예시
-    months = 2  # 2개월치 데이터를 가져옵니다.
+    channel_ids = ['UCMFk5S7g5DY-CZNVh_Kyz_A', 'UCY-mXLM6DsS9cmSwlh0tqSA', 'UC3iSLVH0MxHfwO69oHKpvog', 'UC6ggXTuBVchhwHeQ12Ita1w', 'UCCMFTDGarjgZLc1DlIbbvRg']  # 채널 ID 예시
+    months = 3  # 2개월치 데이터를 가져옵니다.
     asyncio.run(main(channel_ids, months))

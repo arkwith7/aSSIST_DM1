@@ -17,3 +17,6 @@ seaborn
 xgboost
 google-api-python-client
 aiohttp
+konlpy
+transformers
+torch
