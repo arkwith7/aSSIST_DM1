@@ -18,6 +18,10 @@ xgboost
 google-api-python-client
 aiohttp
 konlpy
+soynlp
 transformers
 torch
 openai
+python-dotenv
+# pip install git+https://github.com/haven-jeon/PyKoSpacing.git
+# pip install git+https://github.com/ssut/py-hanspell.git
