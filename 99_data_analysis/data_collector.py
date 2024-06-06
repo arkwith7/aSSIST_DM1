@@ -303,5 +303,5 @@ async def main(channel_ids, months):
 # 비동기 메인 함수 실행
 if __name__ == "__main__":
     channel_ids = ['UCMFk5S7g5DY-CZNVh_Kyz_A', 'UCY-mXLM6DsS9cmSwlh0tqSA', 'UC3iSLVH0MxHfwO69oHKpvog', 'UC6ggXTuBVchhwHeQ12Ita1w', 'UCCMFTDGarjgZLc1DlIbbvRg']  # 채널 ID 예시
-    months = 6  # 2개월치 데이터를 가져옵니다.
+    months = 12  # 12개월치 데이터를 가져옵니다.
     asyncio.run(main(channel_ids, months))

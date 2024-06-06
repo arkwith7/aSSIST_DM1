@@ -11,7 +11,6 @@ packaging
 pandas
 pillow
 scikit-learn
-scipy
 statsmodels
 seaborn
 xgboost
@@ -25,3 +24,7 @@ openai
 python-dotenv
 # pip install git+https://github.com/haven-jeon/PyKoSpacing.git
 # pip install git+https://github.com/ssut/py-hanspell.git
+gensim
+scipy
+kobert-transformers
+sentencepiece

@@ -1,7 +1,8 @@
-# Environment variables
-/.env
-/venv
-.env
+# any files
+google_client_info.json
+service_account.json
+99_data_analysis/*.csv
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
