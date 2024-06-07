@@ -17,6 +17,8 @@ xgboost
 google-api-python-client
 aiohttp
 konlpy
+mecab-python3
+jamo
 soynlp
 transformers
 torch
@@ -28,3 +30,4 @@ gensim
 scipy
 kobert-transformers
 sentencepiece
+
