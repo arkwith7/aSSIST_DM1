@@ -5,6 +5,7 @@ jupyter_core
 matplotlib
 matplotlib-inline
 networkx
+wordcloud
 numpy
 openpyxl
 packaging
@@ -20,6 +21,7 @@ konlpy
 mecab-python3
 jamo
 soynlp
+nltk
 transformers
 torch
 openai
