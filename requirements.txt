@@ -32,4 +32,8 @@ gensim
 scipy
 kobert-transformers
 sentencepiece
+pytube
+# sudo apt-get install ffmpeg
+openai-whisper
+
 
